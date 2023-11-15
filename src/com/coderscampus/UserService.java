@@ -6,13 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class UserService {
 
 	BufferedReader fileReader = null;
 
-	public void readFile() {
+	public User[] readFile() {
 
 		List<User> users = new ArrayList<>();
 		BufferedReader fileReader = null;
@@ -28,9 +28,8 @@ public class UserService {
 		try {
 			while ((userInfo = fileReader.readLine()) != null) {
 				String[] userData = userInfo.split(",");
-				User user = new User(userData[0], userData[1], userData[2]); // is this the same as the createUser method below?
+				User user = createUser(userData); 
 				users.add(user);
-				return;
 			
 			}
 		} catch (IOException e) {
@@ -44,16 +43,15 @@ public class UserService {
 				e.printStackTrace();
 			}
 		}
+		return null;
+		
+		
 
   }
 	
 	public User createUser(String[] userData) {
 		if (userData != null && userData.length >= 3) {
-            String username = userData[0];
-            String password = userData[1];
-            String name = userData[2];
-            
-           return new User(username, password, name);
+           return new User(userData[0], userData[1], userData[2]);
 
         } else {
             return null;
@@ -61,8 +59,5 @@ public class UserService {
 	 }
 }
 	
-
-	public void inputCheck() {
-	}
 }
 

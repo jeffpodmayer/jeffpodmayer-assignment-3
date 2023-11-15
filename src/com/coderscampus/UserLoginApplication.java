@@ -9,18 +9,20 @@ public class UserLoginApplication {
 		
 		Scanner scanner = new Scanner(System.in);
 		
+		User[] users = userService.readFile();
+		
 		System.out.println("Enter your email:");
 		String userEmail = scanner.nextLine();
 
 		System.out.println("Enter your password:");
 		String userPassword = scanner.nextLine();
 		
-		for (int i = 0; i < 5; i++) {
-			if (userEmail == username && userPassword == userService.readFile(){
-				System.out.println("Welcome: " + name);
-				break;
+		for (User user : users) {
+			if (userEmail.equals(user.getUsername()) && userPassword.equals(user.getPassword())){
+				System.out.println("Welcome: " + user.getName());
+				return;
 				
-			} else if (userEmail != userService.readFile() && userPassword != userService.readFile()) {
+			} else if (!userEmail.equals(user.getUsername()) || !userPassword.equals(user.getPassword())) {
 				System.out.println("Invalid login, please try again!");
 				
 				System.out.println("Enter your email:");
@@ -30,9 +32,9 @@ public class UserLoginApplication {
 				userPassword = scanner.nextLine();
 				
 			}
-				
 		}
-		}
+		
+	}
 		
 		
 
