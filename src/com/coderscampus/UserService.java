@@ -43,10 +43,7 @@ public class UserService {
 				e.printStackTrace();
 			}
 		}
-		return null;
-		
-		
-
+		return users.toArray(new User[0]);
   }
 	
 	public User createUser(String[] userData) {
