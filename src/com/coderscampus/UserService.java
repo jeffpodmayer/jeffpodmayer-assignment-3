@@ -55,36 +55,31 @@ public class UserService {
 
 	public User validateInput() {
 
-		int totalInputs = 4;
+		int totalInputs = 5;
 		int inputCount = 0;
 
-		while (inputCount <= totalInputs) {
+		while (inputCount < totalInputs) {
+			
 			System.out.println("Enter your email:");
 			String userEmail = scanner.nextLine();
 
 			System.out.println("Enter your password:");
 			String userPassword = scanner.nextLine();
 
-			boolean loginSuccessful = false;
-
 			for (User user : users) {
 				if (userEmail.equals(user.getUsername()) && userPassword.equals(user.getPassword())) {
 					System.out.println("Welcome: " + user.getName());
-					loginSuccessful = true;
 					break;
-
 				}
 			}
 
-			if (!loginSuccessful || inputCount == 3) {
+			if (inputCount == 4) {
+				System.out.println("Too many failed login attempts, you are locked out!");
+				break;
+			} else {
 				System.out.println("Invalid login, please try again!");
 				inputCount++;
-
-			} 
-			
-			System.out.println("Too many failed login attempts, you are locked out!");
-			break;
-		
+			}
 		}
 		return null;
 	}
