@@ -22,8 +22,8 @@ public class UserLoginApplication {
 			String userPassword = scanner.nextLine();
 
 
-			for (User user : users) {
-				if (userEmail.equals(user.getUsername()) && userPassword.equals(user.getPassword())) { // program not recognizing correct input of userEmail/userPassword
+			for (User user : users) { // program not recognizing correct input of userEmail/userPassword
+				if (userEmail.equals(user.getUsername()) && userPassword.equals(user.getPassword())) { // is this correct way to check for match?
 					System.out.println("Welcome: " + user.getName());
 					break;
 
