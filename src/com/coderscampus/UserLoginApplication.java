@@ -27,7 +27,7 @@ public class UserLoginApplication {
 					System.out.println("Welcome: " + user.getName());
 					break;
 
-				} else if(!userEmail.equals(user.getUsername()) && !userPassword.equals(user.getPassword())) { 
+				} else if(!userEmail.equals(user.getUsername()) || !userPassword.equals(user.getPassword())) { 
 					System.out.println("Invalid login, please try again!");
 					inputCount++;
 					
