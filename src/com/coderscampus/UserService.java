@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserService {
 
 	BufferedReader fileReader = null;
@@ -16,7 +15,7 @@ public class UserService {
 
 		List<User> users = new ArrayList<>();
 		BufferedReader fileReader = null;
-		
+
 		try {
 			fileReader = new BufferedReader(new FileReader("data.txt"));
 		} catch (FileNotFoundException e) {
@@ -28,9 +27,8 @@ public class UserService {
 		try {
 			while ((userInfo = fileReader.readLine()) != null) {
 				String[] userData = userInfo.split(",");
-				User user = createUser(userData); 
+				User user = createUser(userData); // error may be happening here?
 				users.add(user);
-			
 			}
 		} catch (IOException e) {
 			System.out.println("IO Exception!");
@@ -44,17 +42,12 @@ public class UserService {
 			}
 		}
 		return users.toArray(new User[0]);
-  }
-	
-	public User createUser(String[] userData) {
-		if (userData != null && userData.length >= 3) {
-           return new User(userData[0], userData[1], userData[2]);
+	}
 
-        } else {
-            return null;
-		
-	 }
+	public User createUser(String[] userData) { // error may be happening in this method?
+		if (userData != null && userData.length == 3) {
+			return new User(userData[0], userData[1], userData[2]); // references constructor in "User" class...I think
+		}
+		return null;
+	}
 }
-	
-}
-
