@@ -1,28 +1,20 @@
 package com.coderscampus;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class UserService {
-
 	BufferedReader fileReader = null;
-	String[] users = new String[3];
 	User[] userInfoArray = new User[4];
 
 	public User[] readFile() throws Exception {
-
 		BufferedReader fileReader = null;
 		String userInfo;
 
 		fileReader = new BufferedReader(new FileReader("data.txt"));
 
 		int i = 0;
-		
+
 		while ((userInfo = fileReader.readLine()) != null) {
 			String[] userData = userInfo.split(",");
 			userInfoArray[i] = createUser(userData);
@@ -50,5 +42,4 @@ public class UserService {
 		}
 		return null;
 	}
-
 }

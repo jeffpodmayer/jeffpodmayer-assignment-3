@@ -6,20 +6,24 @@ public class UserLoginApplication {
 
 	public static void main(String[] args) throws Exception {
 		UserService userService = new UserService();
-		
 		Scanner scanner = new Scanner(System.in);
+
+		userService.readFile();
 
 		int inputCount = 0;
 
-		while (inputCount < 5) { 
-			System.out.println("Enter your email:"); 
+		while (inputCount < 5) {
+			System.out.println("Enter your email:");
 			String userEmail = scanner.nextLine();
 
 			System.out.println("Enter your password:");
 			String userPassword = scanner.nextLine();
-			
-			if(userService.validateInput(userEmail, userPassword) != null) {
-				System.out.println("Welome: " + user.name);
+
+			User user = userService.validateInput(userEmail, userPassword);
+
+			if (user.getUsername().equalsIgnoreCase(userEmail) && user.getUsername().equalsIgnoreCase(userPassword)) {
+				System.out.println("Welome: " + user.getName());
+				break;
 			} else if (inputCount == 4) {
 				System.out.println("Too many failed login attempts, you are locked out!");
 				break;
@@ -27,17 +31,8 @@ public class UserLoginApplication {
 				System.out.println("Invalid login, please try again!");
 				inputCount++;
 			}
+
 		}
+		scanner.close();
 	}
 }
-		
-		
-		
-		
-			
-
-
-			
-
-		
-// locked out statement right after loop
