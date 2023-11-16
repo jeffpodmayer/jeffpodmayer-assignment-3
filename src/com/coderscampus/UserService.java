@@ -11,76 +11,47 @@ import java.util.Scanner;
 public class UserService {
 
 	BufferedReader fileReader = null;
-	Scanner scanner = new Scanner(System.in);
-	List<User> users = new ArrayList<User>();
+//	Scanner scanner = new Scanner(System.in);
+	String[] users = new String[3];
+	User[] userInfoArray = new User[4];
+	UserService userService = new UserService();
 
-	public User[] readFile() {
+	public User[] readFile() throws Exception {
 
 		BufferedReader fileReader = null;
 		String userInfo;
 
-		try {
-			fileReader = new BufferedReader(new FileReader("data.txt"));
-		} catch (FileNotFoundException e) {
-			System.out.println("FileNotFound Exception.");
-			e.printStackTrace();
-		}
+		fileReader = new BufferedReader(new FileReader("data.txt"));
 
-		try {
-			while ((userInfo = fileReader.readLine()) != null) {
-				String[] userData = userInfo.split(",");
-				User user = createUser(userData);
-				users.add(user);
-			}
-		} catch (IOException e) {
-			System.out.println("IO Exception!");
-			e.printStackTrace();
-		} finally {
-			try {
-				fileReader.close();
-			} catch (IOException e) {
-				System.out.println("IO Exception!");
-				e.printStackTrace();
-			}
+		int i = 0;
+		while ((userInfo = fileReader.readLine()) != null) {
+			String[] userData = userInfo.split(",");
+			userInfoArray[i] = createUser(userData);
+			i++;
+
 		}
-		return users.toArray(new User[0]);
+		fileReader.close();
+		return userInfoArray;
 	}
 
 	public User createUser(String[] userData) {
-		if (userData != null && userData.length == 3) {
-			return new User(userData[0], userData[1], userData[2]);
-		}
-		return null;
+		String username = userData[0];
+		String password = userData[1];
+		String name = userData[2];
+
+		User user = new User(username, password, name);
+		return user;
 	}
 
-	public User validateInput() {
-
-		int totalInputs = 5;
-		int inputCount = 0;
-
-		while (inputCount < totalInputs) {
-			
-			System.out.println("Enter your email:");
-			String userEmail = scanner.nextLine();
-
-			System.out.println("Enter your password:");
-			String userPassword = scanner.nextLine();
-
-			for (User user : users) {
-				if (userEmail.equals(user.getUsername()) && userPassword.equals(user.getPassword())) {
-					System.out.println("Welcome: " + user.getName());
-					break;
-				}
-			}
-
-			if (inputCount == 4) {
-				System.out.println("Too many failed login attempts, you are locked out!");
+	public User validateInput(String userEmail, String userPassword) throws Exception {
+		userService.readFile();
+		for (User user : userInfoArray) {
+			if (userEmail.equalsIgnoreCase(user.getUsername()) && userPassword.equalsIgnoreCase(user.getPassword())) {
+				System.out.println("Welcome: " + user.getName());
 				break;
-			} else {
-				System.out.println("Invalid login, please try again!");
-				inputCount++;
 			}
 		}
 		return null;
 	}
+
 }
