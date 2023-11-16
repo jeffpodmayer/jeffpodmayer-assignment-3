@@ -21,7 +21,8 @@ public class UserLoginApplication {
 
 			User user = userService.validateInput(userEmail, userPassword);
 
-			if (user.getUsername().equalsIgnoreCase(userEmail) && user.getUsername().equalsIgnoreCase(userPassword)) {
+			// issue may be in this line....
+			if (user != null && user.getUsername().equalsIgnoreCase(userEmail) && user.getUsername().equalsIgnoreCase(userPassword)) {
 				System.out.println("Welome: " + user.getName());
 				break;
 			} else if (inputCount == 4) {
