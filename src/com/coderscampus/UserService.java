@@ -6,9 +6,9 @@ import java.io.FileReader;
 public class UserService {
 	BufferedReader fileReader = null;
 	User[] userInfoArray = new User[4];
-	
-	
-	// reads "data.txt" file, separates it line by line, puts each line as a user in userInfoArray
+
+	// reads "data.txt" file, separates it line by line, puts each line as a user in
+	// userInfoArray
 	public User[] readFile() throws Exception {
 		BufferedReader fileReader = null;
 		String userInfo;
@@ -24,10 +24,11 @@ public class UserService {
 		}
 		fileReader.close();
 		return userInfoArray;
-		
+
 	}
 
-	// creates a user and assigns it to each index of the array object, returns new User
+	// creates a user and assigns it to each index of the array object, returns new
+	// User
 	public User createUser(String[] userData) {
 		String username = userData[0];
 		String password = userData[1];
@@ -35,17 +36,17 @@ public class UserService {
 
 		User user = new User(username, password, name);
 		return user;
-		
+
 	}
 
 	// validates if userEmail & userPassword equal what the user entered
 	public User validateInput(String userEmail, String userPassword) {
 		for (User user : userInfoArray) {
-	//		System.out.println("User in array: " + user);
-			if (userEmail.equalsIgnoreCase(user.getUsername()) && userPassword.equalsIgnoreCase(user.getPassword())) {
+			// System.out.println("User in array: " + user);
+			if (userEmail.equalsIgnoreCase(user.getUsername()) && userPassword.equals(user.getPassword())) {
 				return user;
 			}
 		}
-		return null;	
+		return null;
 	}
 }

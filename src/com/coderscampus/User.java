@@ -1,14 +1,15 @@
 package com.coderscampus;
 
 public class User {
-	
+
 	// three properties
 	private String username;
 	private String password;
 	private String name;
-	
-	// constructor to create a new User object for each line that is read from "data.txt"
-	public User(String username, String password, String  name) {
+
+	// constructor to create a new User object for each line that is read from
+	// "data.txt"
+	public User(String username, String password, String name) {
 		this.username = username;
 		this.password = password;
 		this.name = name;
@@ -17,8 +18,7 @@ public class User {
 //	public String toString() {
 //		return "Username: " + username + " Password: " + password + " Name: " + name;
 //	}
-	
-	
+
 	// getters and setters related to those three properties
 	public String getUsername() {
 		return username;

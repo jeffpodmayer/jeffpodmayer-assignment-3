@@ -21,7 +21,6 @@ public class UserLoginApplication {
 
 			User user = userService.validateInput(userEmail, userPassword);
 
-			
 			if (user != null) {
 				System.out.println("Welome: " + user.getName());
 				break;
@@ -34,5 +33,5 @@ public class UserLoginApplication {
 			}
 		}
 		scanner.close();
-  }
+	}
 }
