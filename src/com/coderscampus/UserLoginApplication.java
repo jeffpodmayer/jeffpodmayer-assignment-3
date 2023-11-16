@@ -21,8 +21,8 @@ public class UserLoginApplication {
 
 			User user = userService.validateInput(userEmail, userPassword);
 
-			// issue may be in this line....
-			if (user != null && user.getUsername().equalsIgnoreCase(userEmail) && user.getUsername().equalsIgnoreCase(userPassword)) {
+			
+			if (user != null) {
 				System.out.println("Welome: " + user.getName());
 				break;
 			} else if (inputCount == 4) {
@@ -32,8 +32,7 @@ public class UserLoginApplication {
 				System.out.println("Invalid login, please try again!");
 				inputCount++;
 			}
-
 		}
 		scanner.close();
-	}
+  }
 }

@@ -13,7 +13,12 @@ public class User {
 		this.password = password;
 		this.name = name;
 	}
-
+	// overriding toString method
+//	public String toString() {
+//		return "Username: " + username + " Password: " + password + " Name: " + name;
+//	}
+	
+	
 	// getters and setters related to those three properties
 	public String getUsername() {
 		return username;
