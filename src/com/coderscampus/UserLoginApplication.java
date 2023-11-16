@@ -20,7 +20,6 @@ public class UserLoginApplication {
 
 		while (inputCount < 5) { 
 			if(userService.validateInput(userEmail, userPassword) != null) {
-				System.out.println(userService.validateInput(userEmail, userPassword));
 				break;
 			}else if (inputCount == 4) {
 				System.out.println("Too many failed login attempts, you are locked out!");
