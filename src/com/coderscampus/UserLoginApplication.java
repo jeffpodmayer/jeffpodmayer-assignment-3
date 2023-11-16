@@ -9,19 +9,18 @@ public class UserLoginApplication {
 		
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Enter your email:"); 
-		String userEmail = scanner.nextLine();
-
-		System.out.println("Enter your password:");
-		String userPassword = scanner.nextLine();
-
-		
 		int inputCount = 0;
 
 		while (inputCount < 5) { 
+			System.out.println("Enter your email:"); 
+			String userEmail = scanner.nextLine();
+
+			System.out.println("Enter your password:");
+			String userPassword = scanner.nextLine();
+			
 			if(userService.validateInput(userEmail, userPassword) != null) {
-				break;
-			}else if (inputCount == 4) {
+				System.out.println("Welome: " + user.name);
+			} else if (inputCount == 4) {
 				System.out.println("Too many failed login attempts, you are locked out!");
 				break;
 			} else {

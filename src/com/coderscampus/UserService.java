@@ -45,7 +45,6 @@ public class UserService {
 	public User validateInput(String userEmail, String userPassword) throws Exception {
 		for (User user : userInfoArray) {
 			if (userEmail.equalsIgnoreCase(user.getUsername()) && userPassword.equalsIgnoreCase(user.getPassword())) {
-				System.out.println("Welcome: " + user.getName());
 				return user;
 			}
 		}
