@@ -1,30 +1,11 @@
 package com.coderscampus;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
 public class UserService {
-	BufferedReader fileReader = null;
 	User[] userInfoArray = new User[4];
 
-	// reads "data.txt" file, separates it line by line, puts each line as a user in
-	// userInfoArray
-	public User[] readFile() throws Exception {
-		BufferedReader fileReader = null;
-		String userInfo;
-
-		fileReader = new BufferedReader(new FileReader("data.txt"));
-
-		int i = 0;
-
-		while ((userInfo = fileReader.readLine()) != null) {
-			String[] userData = userInfo.split(",");
-			userInfoArray[i] = createUser(userData);
-			i++;
-		}
-		fileReader.close();
-		return userInfoArray;
-
+	public User[] loadUsers() throws Exception {
+		FileService fileService = new FileService();
+		return fileService.readFile();
 	}
 
 	// creates a user and assigns it to each index of the array object, returns new
@@ -40,7 +21,8 @@ public class UserService {
 	}
 
 	// validates if userEmail & userPassword equal what the user entered
-	public User validateInput(String userEmail, String userPassword) {
+	public User getUserByUsernameAndPassword(String userEmail, String userPassword) {
+
 		for (User user : userInfoArray) {
 			// System.out.println("User in array: " + user);
 			if (userEmail.equalsIgnoreCase(user.getUsername()) && userPassword.equals(user.getPassword())) {

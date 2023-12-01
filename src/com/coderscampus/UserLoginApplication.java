@@ -8,7 +8,7 @@ public class UserLoginApplication {
 		UserService userService = new UserService();
 		Scanner scanner = new Scanner(System.in);
 
-		userService.readFile();
+		userService.loadUsers();
 
 		int inputCount = 0;
 
@@ -19,7 +19,7 @@ public class UserLoginApplication {
 			System.out.println("Enter your password:");
 			String userPassword = scanner.nextLine();
 
-			User user = userService.validateInput(userEmail, userPassword);
+			User user = userService.getUserByUsernameAndPassword(userEmail, userPassword);
 
 			if (user != null) {
 				System.out.println("Welome: " + user.getName());
